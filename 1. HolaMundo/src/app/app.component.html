@@ -1,0 +1,188 @@
+<div class="container mt-4">
+
+  <!-- Enviar datos del html al ts y viceversa -->
+  <div class="row">
+    <h2 style="color: yellowgreen;">
+      <u>
+        Databinding
+      </u>
+    </h2>
+
+    <!-- Interpolación -->
+    <div class="col">
+      <h3><strong>Interpolación</strong></h3>
+      <h4>La suma de 10 + 15 es: {{ getSuma(10, 15) }}</h4>
+    </div>
+
+    <!-- Property Binding -->
+    <div class="col">
+      <h3><strong>Property Binding</strong></h3>
+      <input type="text" class="form-control" [placeholder]="textoPlaceholder" [disabled]="deshabilitado">
+      <img [src]="imgSrc" alt="Img" width="200px" height="200px" style="margin-left: 40px; margin-top: 20px; margin-bottom: 20px;">
+    </div>
+
+    <!-- Event Binding -->
+    <div class="col">
+      <h3><strong>Event Binding</strong></h3>
+      <h4>{{ texto }}</h4>
+      <button class="btn btn-primary" (click)="cambiarTexto()">Click me</button>
+    </div>
+
+    <!-- Two Way Data Binding -->
+    <div class="col">
+      <h3><strong>Two Way Data-Binding</strong></h3>
+      <input type="text" class="form-control" placeholder="Escribe algo aquí" [(ngModel)] = "textoTwoWay">
+      <br>
+      {{ textoTwoWay }}
+    </div>
+  </div>
+
+  <!-- Directivas -> Componente, Atributo (ngClass, ngStyle) & Estructurales (*ngIf, *ngFor, *ngSwitch) -->
+
+  <!-- Directivas Estructurales -->
+  <div class="row">
+    <h2 style="color: salmon;">
+      <u>
+        Directivas Estructurales
+      </u>
+    </h2>
+    
+    <!-- *ngFor -->
+    <div class="col">
+      <h3><strong>*ngFor</strong></h3>
+      <br>
+      <table class="table" style="margin-top: 10px;">
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- *ngIf -->
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3><strong>*ngIf</strong></h3>
+        <button class="btn btn-primary" (click)="toggle()">Toggle</button>
+      </div>
+      <br>
+      <table class="table" *ngIf="mostrar">
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!mostrar">
+        <br>
+        <h4>No hay registros para mostrar</h4>
+      </div>
+    </div>
+
+    <!-- *ngSwitch -->
+    <div class="col">
+      <h3><strong>*ngSwitch</strong></h3>
+      <br>
+      <table class="table" style="margin-top: 10px;">
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index" [ngSwitch]="estudiante.estado">
+            <td>{{ i + 1 }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>
+              <span *ngSwitchCase="'Promocionado'" class="badge bg-success">
+                {{ estudiante.estado }}
+              </span>
+              <span *ngSwitchCase="'Reprobado'" class="badge bg-danger">
+                {{ estudiante.estado }}
+              </span>
+              <span *ngSwitchCase="'Regular'" class="badge bg-warning text-dark">
+                {{ estudiante.estado }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Directivas de Atributo -->
+  <div class="row">
+    <h2 style="color: cornflowerblue;">
+      <u>
+        Directivas de Atributo
+      </u>
+    </h2>
+    
+    <!-- ngStyle -->
+    <div class="col">
+      <h3><strong>ngStyle</strong></h3>
+      <br>
+      <table class="table" >
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td [ngStyle]="{
+              'background-color': 
+               estudiante.estado === 'Promocionado' ? 'lightgreen' : 
+               estudiante.estado === 'Reprobado' ? 'lightcoral' : 
+               'white'}">
+               {{ estudiante.estado }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ngClass -->
+    <div class="col">
+      <h3><strong>ngClass</strong></h3>
+      <br>
+      <table class="table" >
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>
+               <span [ngClass]="estudiante.estado === 'Promocionado' ? 'badge bg-success' : 
+                                estudiante.estado === 'Reprobado' ? 'badge bg-danger' : 
+                                'badge bg-secondary'">
+                {{ estudiante.estado }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
