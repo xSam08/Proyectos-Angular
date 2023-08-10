@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="jumbotron text-center">
+      <h1>App Dados</h1>
+      <p>Si ambos dados son iguales ganaste.</p>
+      <br>
+      <button class="btn btn-success btn-lg" (click)="tirarDados()">Tirar Dados</button>
+      <br>
+      <img class="img" [src]="dadoIzquierdo">
+      <img class="img" [src]="dadoDerecho">
+      <h1 *ngIf="numero1 === numero2">
+        <span class="badge bg-success">
+          Ganaste
+        </span>
+      </h1>
+  </div>
+</div>
