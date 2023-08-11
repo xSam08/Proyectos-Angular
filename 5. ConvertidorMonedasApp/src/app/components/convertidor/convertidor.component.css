@@ -1,0 +1,17 @@
+.badge {
+    margin: 2px;
+    font-size: 100%;
+}
+
+label {
+    font-size: 120%;
+    color: white;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+}
