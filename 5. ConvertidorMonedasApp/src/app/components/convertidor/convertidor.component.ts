@@ -25,7 +25,7 @@ export class ConvertidorComponent {
         break;
       case 'EUR':
         if (this.quiero === 'USD') {
-          this.total = this.cantidad * 1.09;
+          this.total = this.cantidad * 1.10;
         }else if (this.quiero === 'EUR') {
           this.total = this.cantidad;
         }else if (this.quiero === 'LIBRA') {
