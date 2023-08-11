@@ -22,7 +22,7 @@
             </select>
         </div>
     </div>
-    <h5 class="text-center mt-4">
+    <h5 *ngIf="cantidad > 0" class="text-center mt-4">
         <span class="badge bg-success">{{ cantidad }} {{ tengo }} </span>
         <span class="badge bg-secondary">SON</span>
         <span class="badge bg-success">{{ total }} {{ quiero }}</span>
