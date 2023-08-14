@@ -1,0 +1,33 @@
+<div class="card bg-light">
+    <div class="card-body">
+        <h5 class="card-title text-center">Agregar Cita</h5>
+        <div *ngIf="formIncorrecto" class="text-center">
+            <span class="badge text-bg-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="nombre">Nombres
+                <span *ngIf="formIncorrecto && !nombre" class="badge text-bg-danger" style="margin-bottom: 5px;">!</span>
+            </label>
+            <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese su nombre">
+        </div>
+        <div class="form-group mb-3">
+            <label for="fecha">Fecha
+                <span *ngIf="formIncorrecto && !fecha" class="badge text-bg-danger" style="margin-bottom: 5px;">!</span>
+            </label>
+            <input type="date" id="fecha" [(ngModel)]="fecha" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="hora">Hora
+                <span *ngIf="formIncorrecto && !hora" class="badge text-bg-danger" style="margin-bottom: 5px;">!</span>
+            </label>
+            <input type="time" id="hora" [(ngModel)]="hora" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="sintomas">Síntomas
+                <span *ngIf="formIncorrecto && !sintomas" class="badge text-bg-danger" style="margin-bottom: 5px;">!</span>
+            </label>
+            <textarea id="sintomas" rows="3" [(ngModel)]="sintomas" class="form-control" placeholder="Ingrese sus síntomas"></textarea>
+        </div>
+        <button style="width: 100%;" (click)="agregarCita()" class="btn btn-primary btn-block">Agregar Cita</button>
+    </div>
+</div>
