@@ -29,6 +29,25 @@ input[type=range]::-webkit-slider-thumb {
     background: #FF3366;
 }
 
+.input {
+    text-decoration: none;
+    width: 65px;
+    background-color: rgba(255, 0, 0, 0);
+    color: white;
+    font-weight: 800;
+    border: none;
+    text-align: center;
+}
+
+.input:focus {
+    border: none;
+}
+
+.input:focus-visible {
+    outline: none;
+}
+
+
 .sumaresta {
     cursor: pointer;
     background-color: #FF4C4F5E;
@@ -39,4 +58,10 @@ input[type=range]::-webkit-slider-thumb {
 
 .generoDesactivo {
     background-color: #7D2F2F33;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

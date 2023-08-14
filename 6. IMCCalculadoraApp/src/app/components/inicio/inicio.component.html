@@ -39,7 +39,8 @@
                     <div class="contenedor">
                         <p>Peso</p>
                         <div class="estiloNumero">
-                            {{ peso }}
+                            <input type="number" [(ngModel)]="peso" class="input">
+                            <span class="cm">kg</span>
                         </div>
                         <div>
                             <i class="fa-solid fa-minus sumaresta" (click)="peso = peso - 1"></i>
@@ -53,7 +54,7 @@
                     <div class="contenedor">
                         <p>Edad</p>
                         <div class="estiloNumero">
-                            {{ edad }}
+                            <input type="number" [(ngModel)]="edad" class="input">
                         </div>
                         <div>
                             <i class="fa-solid fa-minus sumaresta" (click)="edad = edad - 1"></i>
@@ -64,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <button class="btn btn-primary btn-lg btn-block">CALCULAR</button>
+                    <button (click)="calcularIMC()" class="btn btn-primary btn-lg btn-block" style="width: 106%;">CALCULAR</button>
                 </div>
             </div>
         </div>
