@@ -1,0 +1,25 @@
+<div class="container mt-4 center-vertical">
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>ERROR</strong> {{ mensajeError }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h1 class="display-6">Ingrese la URL a acortar</h1>
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <input type="text" [(ngModel)]="nombreUrl" class="form-control form-control-lg"
+                placeholder="Ingrese la URL..">
+        </div>
+        <div class="col-lg-4">
+            <div class="d-grid gap-2">
+                <button (click)="procesarURL()" class="btn btn-dark btn-lg" type="button">Aceptar</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="urlProcesada" class="row">
+        <div class="col-lg-8">
+            <h2 class="display-6">URL Acortada</h2>
+            <input type="text" [(ngModel)]="urlShort" class="form-control form-control-lg mt-3">
+        </div>
+    </div>
+    <app-spinner *ngIf="loading"></app-spinner>
+</div>
