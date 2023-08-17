@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-formulario',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent {
+
+  @Output() parametrosSeleccionados = new EventEmitter<any>();
 
   categoriaSeleccionada = 'general';
   paisSeleccionado = 'co';
@@ -30,7 +32,10 @@ export class FormularioComponent {
   ];
 
   obtenerValores(): void{
-    console.log(this.categoriaSeleccionada);
-    console.log(this.paisSeleccionado);
+    const parametros ={
+      categoria: this.categoriaSeleccionada,
+      pais: this.paisSeleccionado
+    }
+    this.parametrosSeleccionados.emit(parametros);
   }
 }
