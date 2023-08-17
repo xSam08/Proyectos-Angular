@@ -1,0 +1,22 @@
+<div class="h-100 p-4 text-bg-dark rounded-3 mt-5">
+    <h2 class="heading text-center">Filtra Noticias por Categoría y País</h2>
+    <div class="row mt-4">
+        <div class="col-lg-8 offset-lg-2">
+            <form>
+                <div class="form-group mb-4">
+                    <select name="categoria" [(ngModel)]="categoriaSeleccionada" class="form-control form-control-lg">
+                        <option [value]="categoria.value" *ngFor="let categoria of categorias">{{ categoria.nombre }}</option>
+                    </select>
+                </div>
+                <div class="form-group mb-5">
+                    <select name="pais" [(ngModel)]="paisSeleccionado" class="form-control form-control-lg">
+                        <option [value]="pais.value" *ngFor="let pais of paises">{{ pais.nombre }}</option>
+                    </select>
+                </div>
+            </form>
+            <div class="d-grid gap-2 pb-3">
+                <button class="btn btn-danger btn-lg" (click)="obtenerValores()">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
