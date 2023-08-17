@@ -16,7 +16,7 @@ export class ShortInterceptor implements HttpInterceptor {
     const TOKEN = 'd25255bca8915e58ebec1977fefc3667055b5836';
 
     request = request.clone({ setHeaders: {Authorization: 'Bearer ' + TOKEN} })
-    
+
     return next.handle(request);
   }
 }
