@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ImagenService } from 'src/app/services/imagen.service';
+import { PaginadorService } from 'src/app/services/paginador.service';
 
 @Component({
   selector: 'app-listar-imagen',
@@ -18,8 +19,8 @@ export class ListarImagenComponent {
   calcularTotalPaginas: number = 0;
   totalPaginasMenosUno: number = 0;
   mostrarPaginador: boolean = false;
-
-  constructor(private _imagenService: ImagenService) { 
+  
+  constructor(private _imagenService: ImagenService, public _paginadorService: PaginadorService) { 
     this.termino = '';
     this.loading = false;
 
@@ -31,6 +32,12 @@ export class ListarImagenComponent {
     });
   }
 
+  ngOnInit() {
+    this._paginadorService.mostrarPaginador$.subscribe(mostrar => {
+      this.mostrarPaginador = mostrar;
+    });
+  }
+  
   obtenerImagenes() {
     this.listImagenes = [];
 
@@ -42,9 +49,9 @@ export class ListarImagenComponent {
         this.listImagenes = data.hits;
 
         if (data.totalHits > this.imagenesPorPagina) {
-          this.mostrarPaginador = true;
+          this._paginadorService.mostrarPaginador(true);
         } else { 
-          this.mostrarPaginador = false;
+          this._paginadorService.mostrarPaginador(false);
         }
 
         if (data.hits.length === 0) {
@@ -62,6 +69,8 @@ export class ListarImagenComponent {
       this.loading = false;
     });
   }
+
+  
 
   paginaAnterior() {
     this.paginaActual--;
