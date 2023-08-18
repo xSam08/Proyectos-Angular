@@ -1,0 +1,9 @@
+.likesViews {
+    font-weight: bold;
+    margin-bottom: -1px;
+    padding-top: 15px;
+}
+
+a {
+    cursor: pointer;
+}
