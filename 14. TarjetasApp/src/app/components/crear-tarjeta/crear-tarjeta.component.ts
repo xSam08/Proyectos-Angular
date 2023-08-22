@@ -13,9 +13,9 @@ export class CrearTarjetaComponent {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       titular: ['', Validators.required],
-      numeroTarjeta: ['', Validators.required],
-      fechaExpiracion: ['', Validators.required],
-      cvv: ['', Validators.required]
+      numeroTarjeta: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
+      fechaExpiracion: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
+      cvv: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]]
     });
   }
   
