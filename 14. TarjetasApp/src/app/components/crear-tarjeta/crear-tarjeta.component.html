@@ -4,13 +4,17 @@
         <form [formGroup]="form" (ngSubmit)="crearTarjeta()">
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text">
-                    <i class="fa-solid fa-circle-user"></i>
+                    <i class="fa-solid fa-circle-user"
+                       [class.green-icon]="this.form.get('titular')?.valid && this.form.get('titular')?.touched"
+                       [class.red-icon]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched"></i>
                 </span>
                 <input type="text" formControlName="titular" class="form-control" placeholder="Titular">
             </div>
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text">
-                    <i class="fa-solid fa-credit-card"></i>
+                    <i class="fa-solid fa-credit-card"
+                       [class.green-icon]="this.form.get('numeroTarjeta')?.valid"
+                       [class.red-icon]="this.form.get('numeroTarjeta')?.invalid && this.form.get('numeroTarjeta')?.touched"></i>
                 </span>
                 <input type="text" formControlName="numeroTarjeta" class="form-control" maxlength="16"
                        placeholder="Número Tarjeta">
@@ -19,7 +23,9 @@
                 <div class="col lg-7">
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text">
-                            <i class="fa-solid fa-calendar-days"></i>
+                            <i class="fa-solid fa-calendar-days"
+                               [class.green-icon]="this.form.get('fechaExpiracion')?.valid"
+                               [class.red-icon]="this.form.get('fechaExpiracion')?.invalid && this.form.get('fechaExpiracion')?.touched"></i>
                         </span>
                         <input type="text" formControlName="fechaExpiracion" class="form-control" maxlength="5"
                                placeholder="MM/YY">
@@ -28,14 +34,16 @@
                 <div class="col lg-5">
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text">
-                            <i class="fa-solid fa-key"></i>
+                            <i class="fa-solid fa-key"
+                               [class.green-icon]="this.form.get('cvc')?.valid"
+                               [class.red-icon]="this.form.get('cvc')?.invalid && this.form.get('cvc')?.touched"></i>
                         </span>
-                        <input type="password" formControlName="cvv" class="form-control" maxlength="3"
+                        <input type="password" formControlName="cvc" class="form-control" maxlength="3"
                                placeholder="CVC">
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-success btn-lg" type="submit">
+                    <button [disabled]="form.invalid" class="btn btn-success btn-lg" type="submit">
                         <i class="fa-regular fa-circle-check"></i>
                         &nbsp;Aceptar
                     </button>
