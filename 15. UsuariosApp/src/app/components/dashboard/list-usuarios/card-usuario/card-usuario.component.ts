@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-usuario',
@@ -6,6 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-usuario.component.css']
 })
 export class CardUsuarioComponent {
-  imgUrl = 'https://img.freepik.com/foto-gratis/lobo-euroasiatico-habitat-invierno-blanco-hermoso-bosque-invierno_475641-702.jpg?w=996&t=st=1692735200~exp=1692735800~hmac=6573e15b183a0d92618abf2d4c4f0d765db9033e93421df232661130d176b2ea'
+  
+  @Input() user: any;
+  imgUrl: string;
+  firstName: string;
+  email: string;
+  id: number;
+
+  constructor() {
+    this.imgUrl = '';
+    this.firstName = ''; 
+    this.email = '';
+    this.id = 0;
+  }
+
+  ngOnInit(): void {
+    this.firstName = this.user.name;
+    this.email = this.user.email;
+   /*  this.imgUrl = this.user._links.avatar.href; */
+    this.id = this.user.id;
+  }
 
 }
