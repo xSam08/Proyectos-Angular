@@ -8,14 +8,3 @@ p {
     height: 100vh;
     background-size: cover;
 }
-
-.btn {
-    background-color: #F05F44;
-    border-color: #F05F44;
-    border-radius: 60px;
-}
-
-.btn:hover {
-    background-color: #db543d;
-    border-color: #db543d;
-}
