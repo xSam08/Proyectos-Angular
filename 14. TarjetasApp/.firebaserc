@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-projects-2b1c1": {
+      "hosting": {
+        "TarjetasApp": [
+          "angular-projects-2b1c1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-projects-2b1c1"
+  }
+}

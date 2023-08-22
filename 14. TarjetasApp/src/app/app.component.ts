@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore'
+import { Firestore, collection, collectionData } from '@angular/fire/firestore'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,13 @@ import { Firestore } from '@angular/fire/firestore'
 })
 export class AppComponent {
 
-  firebase: Firestore = inject(Firestore);
+  firestore: Firestore = inject(Firestore);
+  items$: Observable<any[]>;
 
   title = 'TarjetasApp';
+
+  constructor() {
+    const aCollection = collection(this.firestore, 'items')
+    this.items$ = collectionData(aCollection);
+  }
 }
