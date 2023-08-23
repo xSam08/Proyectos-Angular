@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 // Angular Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatToolbarModule
   ],
   exports: [
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatToolbarModule
   ]
 })
 export class AngularMaterialModule { }
