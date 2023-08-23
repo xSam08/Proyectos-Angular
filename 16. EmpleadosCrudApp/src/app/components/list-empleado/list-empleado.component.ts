@@ -1,9 +1,11 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { MensajeConfirmacionComponent } from '../shared/mensaje-confirmacion/mensaje-confirmacion.component';
 
 @Component({
   selector: 'app-list-empleado',
@@ -19,7 +21,7 @@ export class ListEmpleadoComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _empleadoService: EmpleadoService) {
+  constructor(private _empleadoService: EmpleadoService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Empleado>([]);
   }
 
@@ -41,5 +43,20 @@ export class ListEmpleadoComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(this.listEmpleados);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  eliminarEmpleado(index: number) {
+
+    const dialogRef = this.dialog.open(MensajeConfirmacionComponent, {
+      width: '350px',
+      data: { mensaje: '¿Está seguro de que desea eliminar el empleado?' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'Aceptar') {
+        this._empleadoService.eliminarEmpleado(index);
+        this.cargarEmpleados();
+      }
+    });
   }
 }
