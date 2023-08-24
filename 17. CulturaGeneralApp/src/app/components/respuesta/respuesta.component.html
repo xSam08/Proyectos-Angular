@@ -1,1 +1,26 @@
-<p>respuesta works!</p>
+<h3 class="card-title">Resultados</h3>
+<p class="card-text">Este es el resultado de la prueba: </p>
+<div *ngFor="let pregunta of listPreguntas; let i = index">
+    <h4 class="card-title">{{ pregunta.descripcionPregunta }}</h4>
+    <ul class="list-group col-lg-8 offset-lg-2 mb-4">
+        <ng-container *ngFor="let respuesta of listPreguntas[i].respuestas; let j = index">
+            <li class="list-group-item" [ngClass]= "{
+                'list-group-item-success': respuesta.esCorrecta == 1 && respuestasUsuario[i] == j,
+                'list-group-item-danger': respuesta.esCorrecta == 0 && respuestasUsuario[i] == j
+            }">
+                {{ respuesta.nombre }}
+                <i class="fa-solid fa-circle-check fa-bounce icono correct"
+                   *ngIf="respuesta.esCorrecta == 1 && respuestasUsuario[i] == j"></i>
+                <i class="fa-solid fa-circle-xmark fa-bounce icono incorrect"
+                   *ngIf="respuesta.esCorrecta == 0 && respuestasUsuario[i] == j"></i>
+            </li>
+        </ng-container>
+    </ul>
+</div>
+<div class="row pt-3">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="d-grid gap-2">
+            <button class="btn btn-dark btn-lg" (click)="volver()">Volver al Menú principal</button>
+        </div>
+    </div>
+</div>

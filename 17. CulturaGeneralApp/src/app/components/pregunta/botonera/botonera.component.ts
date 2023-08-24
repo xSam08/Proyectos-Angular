@@ -34,6 +34,8 @@ export class BotoneraComponent {
       }
       case 'Finalizar': {
         this._preguntaService.respuestasUsuario.push(this._preguntaService.indexRespuesta);
+        this._preguntaService.pregConfirmada = false;
+        this._preguntaService.indexPregunta = 0;
         this.router.navigate(['/respuesta']);
         break;
       }
