@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MensajeConfirmacionComponent } from './components/shared/mensaje-confirmacion/mensaje-confirmacion.component';
 import { AngularMaterialModule } from './components/shared/angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioVacioComponent } from './components/shared/formulario-vacio/formulario-vacio.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddEditEmpleadoComponent,
     ListEmpleadoComponent,
     NavbarComponent,
-    MensajeConfirmacionComponent
+    MensajeConfirmacionComponent,
+    FormularioVacioComponent
   ],
   imports: [
     BrowserModule,

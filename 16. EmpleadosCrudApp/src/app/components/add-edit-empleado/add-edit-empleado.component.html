@@ -4,8 +4,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-5 offset-lg-1 mt-4">
-        <form autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="col-lg-5 offset-lg-1 mt-2">
+        <form [formGroup]="myForm" autocomplete="off" (ngSubmit)="onSubmit()">
+            <div *ngIf="mensajeError">
+             
+            </div>
             <div class="col-lg-12 mb-2">
                 <mat-form-field class="example-container" [style.fontSize.px]=16>
                     <mat-label>Nombre Completo</mat-label>
@@ -54,8 +57,9 @@
                 </mat-radio-group>
                 <mat-error *ngIf="getGeneroErrorMessage()">{{getErrorMessage(genero)}}</mat-error>
             </div>
-            <div class="col-lg-12">
-                <button class="btn btn-success btn-lg" type="button" style="margin-right: 20px;">Aceptar</button>
+            <div class="col-lg-12 mb-4">
+                <button class="btn btn-success btn-lg" type="button" style="margin-right: 20px;"
+                    (click)="guardarEmpleado()">Aceptar</button>
                 <button class="btn btn-secondary btn-lg" type="button" routerLink="">Cancelar</button>
             </div>
         </form>
