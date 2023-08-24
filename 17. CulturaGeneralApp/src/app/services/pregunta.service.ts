@@ -8,6 +8,11 @@ import { Respuesta } from '../models/respuesta';
 export class PreguntaService {
 
   indexPregunta: number = 0;
+  opcionSeleccionada!: Respuesta;
+  deshabilitarBtn: boolean = true;
+  pregConfirmada: boolean = false;
+  indexRespuesta = 0;
+  respuestasUsuario: Array<number> = [];
 
   public preguntas: Pregunta[] = [
     new Pregunta('¿Cuál es el país más grande y el más pequeño del mundo?', [

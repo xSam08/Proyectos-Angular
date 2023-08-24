@@ -1,7 +1,9 @@
 <div class="row pt-3">
     <div class="col-lg-4 offset-lg-4">
         <div class="d-grid gap-2">
-            <button class="btn btn-dark btn-lg" type="button">Aceptar</button>
+            <button class="btn btn-dark btn-lg"
+                    [disabled]="_preguntaService.deshabilitarBtn"
+                    (click)="siguiente()">{{ btnString }}</button>
         </div>
     </div>
 </div>
