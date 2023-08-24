@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { FormularioVacioComponent } from '../shared/formulario-vacio/formulario-vacio.component';
@@ -14,24 +14,27 @@ import { FormularioVacioComponent } from '../shared/formulario-vacio/formulario-
 })
 export class AddEditEmpleadoComponent {
 
-  estadosCiviles: any[] = ['Soltero', 'Casado', 'Divorciado', 'Viudo'];
+  estadosCiviles: any[] = ['Soltero(a)', 'Casado(a)', 'Divorciado(a)', 'Viudo(a)'];
 
   myForm: FormGroup;
-
   nombre = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   fecha = new FormControl('', [Validators.required]);
   telefono = new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
   estado = new FormControl('', [Validators.required]);
   genero = new FormControl('', [Validators.required]);
+
   mensajeError: string = '';
+  idEmpleado: any;
+  accion = 'Agregar';
   formSubmitted = false;
 
   constructor(private fb: FormBuilder,
-              private _empleadoService: EmpleadoService,
-              private route: Router,
-              private snackBar: MatSnackBar,
-              private dialog: MatDialog) {
+    private _empleadoService: EmpleadoService,
+    private route: Router,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private aRouter: ActivatedRoute) {
     this.myForm = this.fb.group({
       nombre: this.nombre,
       email: this.email,
@@ -40,6 +43,15 @@ export class AddEditEmpleadoComponent {
       estado: this.estado,
       genero: this.genero
     });
+
+    this.idEmpleado = this.aRouter.snapshot.params['id'];
+  }
+
+  ngOnInit(): void {
+    if (this.idEmpleado !== undefined) {
+      this.accion = 'Editar';
+      this.esEditar();
+    }
   }
 
   openDialog() {
@@ -47,7 +59,7 @@ export class AddEditEmpleadoComponent {
       width: '400px',
       data: { mensajeError: this.mensajeError }
     });
-  
+
     dialogRef.afterClosed().subscribe(() => {
       console.log('Diálogo cerrado');
     });
@@ -85,15 +97,45 @@ export class AddEditEmpleadoComponent {
         estadoCivil: this.myForm.get('estado')?.value,
         genero: this.myForm.get('genero')?.value
       };
-  
-      this._empleadoService.agregarEmpleado(empleado);
-      this.snackBar.open('El empleado fue registrado con éxito', '', {
-        duration: 3000
-      });
-      this.route.navigate(['/list-empleados']);
+
+      if (this.idEmpleado !== undefined) {
+        this.editarEmpleado(empleado);
+      } else {
+        this.agregarEmpleado(empleado);
+      }
     } else {
-      this.mensajeError = 'Por favor, complete todos los campos correctamente.';
+      this.mensajeError = 'Por favor, complete los campos vacíos.';
       this.openDialog();
     }
   }
+
+  agregarEmpleado(empleado: Empleado) {
+    this._empleadoService.agregarEmpleado(empleado);
+    this.snackBar.open('El empleado fue registrado con éxito', '', {
+      duration: 2500
+    });
+    this.route.navigate(['/list-empleados']);
+  }
+
+  editarEmpleado(empleado: Empleado) {
+    this._empleadoService.editarEmpleado(empleado, this.idEmpleado);
+    this.snackBar.open('El empleado fue actualizado con éxito', '', {
+      duration: 2500
+    });
+    this.route.navigate(['/list-empleados']);
+  }
+
+  esEditar() {
+    const empleado: Empleado = this._empleadoService.getEmpleado(this.idEmpleado);
+    console.log(empleado);
+    this.myForm.patchValue({
+      nombre: empleado.nombreCompleto,
+      email: empleado.correo,
+      fecha: empleado.fechaIngreso,
+      telefono: empleado.telefono,
+      estado: empleado.estadoCivil,
+      genero: empleado.genero
+    });
+  }
+
 }

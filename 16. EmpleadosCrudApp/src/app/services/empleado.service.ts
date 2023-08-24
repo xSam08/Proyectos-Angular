@@ -12,7 +12,7 @@ export class EmpleadoService {
       telefono: 123456789,
       correo: 'juanperez@mail.com',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltero',
+      estadoCivil: 'Soltero(a)',
       genero: 'Masculino'
     },
     {
@@ -20,7 +20,7 @@ export class EmpleadoService {
       telefono: 123456789,
       correo: 'mariamartinez@mail.com',
       fechaIngreso: new Date(),
-      estadoCivil: 'Casada',
+      estadoCivil: 'Casado(a)',
       genero: 'Femenino'
     },
     {
@@ -28,7 +28,7 @@ export class EmpleadoService {
       telefono: 123456789,
       correo: 'pedrop@mail.com',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltero',
+      estadoCivil: 'Soltero(a)',
       genero: 'Masculino'
     },
     {
@@ -36,7 +36,7 @@ export class EmpleadoService {
       telefono: 123456789,
       correo: 'josep@mail.com',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltero',
+      estadoCivil: 'Soltero(a)',
       genero: 'Masculino'
     },
     {
@@ -44,7 +44,7 @@ export class EmpleadoService {
       telefono: 123456789,
       correo: 'anap@mail.com',
       fechaIngreso: new Date(),
-      estadoCivil: 'Soltero',
+      estadoCivil: 'Soltero(a)',
       genero: 'Femenino'
     }
   ]
@@ -61,5 +61,13 @@ export class EmpleadoService {
 
   agregarEmpleado(empleado: Empleado) {
     this.listEmpleados.unshift(empleado);
+  }
+
+  getEmpleado(index: number) {
+    return this.listEmpleados[index];
+  }
+
+  editarEmpleado(empleado: Empleado, idEmpleado: number) {
+    this.listEmpleados[idEmpleado] = empleado;
   }
 }
